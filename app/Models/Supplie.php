@@ -8,8 +8,8 @@ class Supplie extends Model
 {
     protected $table = 'supplies';
 
-    public function getAll()
+    public function supplieImages()
     {
-        return '12345';
+        return $this->hasMany(SupplieImage::class);
     }
 }

@@ -10,9 +10,9 @@ class SupplieController extends Controller
 {
     public function index()
     {
-        $supplie = new User();
-        $all = $supplie->all()[0];
-        var_dump($all->password);
+        $supplie = new Supplie();
+        $all = $supplie->all()->first();//->id();
+        var_dump($all->supplieImages[1]->url);
         return null;
     }
 }
