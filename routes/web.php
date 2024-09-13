@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [SupplieController::class, 'index']);
+Route::controller(SupplieController::class)->group(function () {
+    Route::get('/supplie', 'getAll');
+    Route::get('/supplie/{id}', 'get');
+    Route::post('/supplie', 'create');
+});
