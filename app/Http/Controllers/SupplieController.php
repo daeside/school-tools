@@ -71,10 +71,10 @@ class SupplieController extends Controller
             $supplie->grade = $request->grade;
             $supplie->price = $request->price;
             $supplie->update();
-            //$supplie->supplieImages()->delete();
+            $supplie->supplieImages()->delete();
             if (isset($request->supplie_images) && is_array($request->supplie_images)) {
                 foreach ($request->supplie_images as $image) {
-                    $supplie->supplieImages()->update(['url' => $image['url']]);
+                    $supplie->supplieImages()->create(['url' => $image['url']]);
                 }
             }
             $supplie->load('supplieImages');
