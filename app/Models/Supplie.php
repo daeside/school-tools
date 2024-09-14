@@ -12,7 +12,7 @@ class Supplie extends Model{
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
-    public function supplieImages(){
+    public function images(){
         return $this->hasMany(SupplieImage::class);
     }
 }
