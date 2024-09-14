@@ -22,4 +22,6 @@ Route::controller(SupplieController::class)->group(function () {
     Route::get('/supplie', 'getAll');
     Route::get('/supplie/{id}', 'get');
     Route::post('/supplie', 'create');
+    Route::put('/supplie/{id}', 'update');
+    Route::delete('/supplie/{id}', 'delete');
 });

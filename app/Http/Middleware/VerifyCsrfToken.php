@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'http://new.school-tools.com/supplie'
+        'http://new.school-tools.com/*'
     ];
 }

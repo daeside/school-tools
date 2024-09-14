@@ -69,8 +69,8 @@ return [
     |
     */
 
-    //'timezone' => 'UTC',
-    'timezone' => 'America/Cancun',
+    'timezone' => 'UTC',
+    //'timezone' => 'America/Cancun',
 
     /*
     |--------------------------------------------------------------------------
