@@ -2,10 +2,9 @@
 
 namespace App\Commons;
 
-class ValidatorRules
+class Rules
 {
-
-    private static $supplieRules = [
+    public const SUPPLIE_RULES = [
         'name' => 'required|string|max:100',
         'description' => 'required|string',
         'grade' => 'required|integer|min:1|max:6',
@@ -14,8 +13,9 @@ class ValidatorRules
         'images.*.url' => 'required|string|max:100',
     ];
 
-    public static function supplie(): array
-    {
-        return self::$supplieRules;
-    }
+    public const USER_RULES = [
+        'user' => 'required|string|max:30',
+        'email' => 'required|string|email|max:50',
+        'password' => 'required|string|confirmed|max:50',
+    ];
 }

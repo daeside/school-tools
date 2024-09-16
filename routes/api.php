@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\SupplieController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +21,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(SupplieController::class)->group(function () {
-    Route::get('/supplie', 'getAll');
+    Route::get('/supplies/{size}', 'getAll');
     Route::get('/supplie/{id}', 'get');
     Route::post('/supplie', 'create');
     Route::put('/supplie/{id}', 'update');
     Route::delete('/supplie/{id}', 'delete');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users{size}', 'getAll');
+    Route::get('/user/{id}', 'get');
+    Route::post('/user', 'create');
+    Route::put('/user/{id}', 'update');
+    Route::delete('/user/{id}', 'delete');
 });

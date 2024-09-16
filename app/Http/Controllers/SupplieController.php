@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Commons\ValidatorRules;
+use App\Commons\Rules;
 use App\Models\Supplie;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 
 class SupplieController extends Controller
 {
-    public function getAll()
+    public function getAll($size)
     {
-        $supplies = Supplie::all();
-        $supplies->load('images');
-        return response()->json($supplies);
+        try {
+            $supplies = Supplie::orderBy('created_at', 'desc')->paginate($size);
+            $supplies->load('images');
+            return response()->json($supplies, Response::HTTP_OK);
+        } catch (Exception $ex) {
+            return $this->handleException(null, $ex);
+        }
     }
 
     public function get($id)
@@ -22,42 +26,34 @@ class SupplieController extends Controller
         try {
             $supplie = Supplie::findOrFail($id);
             $supplie->load('images');
-            return response()->json($supplie);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Supplie not found'], 404);
+            return response()->json($supplie, Response::HTTP_OK);
+        } catch (Exception $ex) {
+            return $this->handleException(null, $ex);
         }
     }
 
     public function create(Request $request)
     {
         try {
-            $validated = $request->validate(ValidatorRules::supplie());
+            $validated = $request->validate(Rules::SUPPLIE_RULES);
             $supplie = $this->buildSupplie(new Supplie(), $request);
             $this->buildAndLoadImages($supplie, $request);
-            return response()->json($supplie, 201);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'error' => 'Invalid request',
-                'details' => $e->errors()
-            ], 400);
+            return response()->json($supplie, Response::HTTP_CREATED);
+        } catch (Exception $ex) {
+            return $this->handleException($request, $ex);
         }
     }
 
     public function update(Request $request, $id)
     {
         try {
-            $validated = $request->validate(ValidatorRules::supplie());
+            $validated = $request->validate(Rules::SUPPLIE_RULES);
             $supplie = $this->buildSupplie(Supplie::findOrFail($id), $request);
             $supplie->images()->delete();
             $this->buildAndLoadImages($supplie, $request);
-            return response()->json($supplie);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'error' => 'Invalid request',
-                'details' => $e->errors()
-            ], 400);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Supplie not found'], 404);
+            return response()->json($supplie, Response::HTTP_OK);
+        } catch (Exception $ex) {
+            return $this->handleException($request, $ex);
         }
     }
 
@@ -69,9 +65,9 @@ class SupplieController extends Controller
                 $image->delete();
             }
             $supplie->delete();
-            return response()->json(null, 204);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Supplie not found'], 404);
+            return response()->json(null, Response::HTTP_NO_CONTENT);
+        } catch (Exception $ex) {
+            return $this->handleException(null, $ex);
         }
     }
 
