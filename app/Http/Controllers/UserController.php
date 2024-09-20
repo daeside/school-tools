@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function getAll($size)
+    public function getAll(Request $request)
     {
         try {
+            $size = $request->query('size');
             $users = User::orderBy('created_at', 'desc')->paginate($size);
             return response()->json($users, Response::HTTP_OK);
         } catch (Exception $ex) {

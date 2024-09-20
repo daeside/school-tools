@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(SupplieController::class)->group(function () {
-    Route::get('/supplies/{size}', 'getAll');
+    Route::get('/supplies', 'getAll');
     Route::get('/supplie/{id}', 'get');
     Route::post('/supplie', 'create');
     Route::put('/supplie/{id}', 'update');
@@ -29,7 +29,7 @@ Route::controller(SupplieController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/users{size}', 'getAll');
+    Route::get('/users', 'getAll');
     Route::get('/user/{id}', 'get');
     Route::post('/user', 'create');
     Route::put('/user/{id}', 'update');

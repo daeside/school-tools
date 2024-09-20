@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SupplieController extends Controller
 {
-    public function getAll($size)
+    public function getAll(Request $request)
     {
         try {
+            $size = $request->query('size');
             $supplies = Supplie::orderBy('created_at', 'desc')->paginate($size);
             $supplies->load('images');
             return response()->json($supplies, Response::HTTP_OK);
