@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SupplieController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', [AdminController::class, 'login']);
 
 Route::controller(SupplieController::class)->group(function () {
     Route::get('/supplies', 'getAll');
