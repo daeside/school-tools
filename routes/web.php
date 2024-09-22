@@ -21,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', [AdminController::class, 'login']);
+Route::post('/admin/dologin', [AdminController::class, 'doLogin']);
+Route::get('/admin/supplies', [AdminController::class, 'supplies']);
 
 Route::controller(SupplieController::class)->group(function () {
     Route::get('/supplies', 'getAll');
