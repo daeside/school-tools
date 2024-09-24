@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -13,12 +14,13 @@ class AdminController extends Controller
         return view('admin/login', compact('pageName'));
     }
 
-    public function doLogin()
+    public function doLogin(Request $request)
     {
-        return redirect()->action([AdminController::class, 'supplies']);
+        return $request;
+        //return redirect()->action([AdminController::class, 'supplies']);
     }
 
-    public function supplies()
+    public function supplies(Request $request)
     {
         /*$pageName = env('PAGE_NAME');
         return view('admin/login', compact('pageName'));*/
