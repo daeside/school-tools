@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Commons\Rules;
+use App\Commons\Validator;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function getAll(Request $request)
     {
         try {
-            $size = $request->query('size');
+            $size = Validator::getQuerySize($request->query('size'));
             $users = User::orderBy('created_at', 'desc')->paginate($size);
             return response()->json($users, Response::HTTP_OK);
         } catch (Exception $ex) {

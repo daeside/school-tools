@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Commons\Rules;
+use App\Commons\Validator;
 use App\Models\Supplie;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class SupplieController extends Controller
     public function getAll(Request $request)
     {
         try {
-            $size = $request->query('size');
+            $size = Validator::getQuerySize($request->query('size'));
             $supplies = Supplie::orderBy('created_at', 'desc')->paginate($size);
             $supplies->load('images');
             return response()->json($supplies, Response::HTTP_OK);
