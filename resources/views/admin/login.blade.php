@@ -18,5 +18,14 @@
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     </form>
+    @if ($errors->any())
+        <div class="mt-3">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </main>
 @endsection

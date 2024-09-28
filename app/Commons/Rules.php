@@ -14,8 +14,13 @@ class Rules
     ];
 
     public const USER_RULES = [
-        'user' => 'required|string|max:30',
+        'user' => 'required|string|max:30|unique:users',
         'email' => 'required|string|email|max:50',
         'password' => 'required|string|confirmed|max:50',
+    ];
+
+    public const LOGIN_RULES = [
+        'user' => 'required|string|max:30',
+        'password' => 'required|string|max:50',
     ];
 }
