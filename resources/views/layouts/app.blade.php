@@ -4,14 +4,30 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $pageName }}</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/vue.js') }}"></script>
+    <script src="{{ asset('js/vue-demi.js') }}"></script>
+    <script src="{{ asset('js/vue-core.js') }}"></script>
+    <script src="{{ asset('js/validators.js') }}"></script>
     <script src="{{ asset('js/init.js') }}"></script>
 </head>
-
+<script>
+    const {
+        createApp,
+        reactive
+    } = Vue;
+    const {
+        useVuelidate
+    } = Vuelidate;
+    const {
+        required,
+        minLength,
+        maxLength
+    } = VuelidateValidators;
+</script>
 <body class="text-center">
     @yield('content')
     @if(!$isAdmin)
