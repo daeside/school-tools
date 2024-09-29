@@ -36,8 +36,7 @@ class AdminController extends Controller
 
     public function supplies(Request $request)
     {
-        /*$pageName = env('PAGE_NAME');
-        return view('admin/login', compact('pageName'));*/
-        return 12;
+        $pageName = env('PAGE_NAME');
+        return view('admin/supplies', compact('pageName'));
     }
 }
