@@ -8,13 +8,13 @@
         <div class="form-floating">
             <input type="text" class="form-control" id="user" name="user" placeholder="User" v-model="user" @blur="v$.user.$touch()">
             <label for="user">User</label>
-            <span v-if="v$.user.required.$invalid">User required</span>
+            <span v-if="submit && v$.user.required.$invalid">User required</span>
             <span v-if="v$.user.maxLength.$invalid">User max length is 30</span>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" v-model="password" @blur="v$.password.$touch()">
             <label for="password">Password</label>
-            <span v-if="v$.password.required.$invalid">Password required</span>
+            <span v-if="submit && v$.password.required.$invalid">Password required</span>
             <span v-if="v$.password.maxLength.$invalid">Password max length is 50</span>
         </div>
         <div class="checkbox mb-3">
@@ -23,7 +23,7 @@
     </form>
     @if ($errors->any())
     <div class="mt-3">
-        <ul>
+        <ul style="list-style-type: none;">
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
@@ -36,7 +36,8 @@
         data() {
             return {
                 user: '',
-                password: ''
+                password: '',
+                submit: false
             }
         },
         validations() {
@@ -62,6 +63,7 @@
                 this.v$.$touch();
                 if (this.v$.$invalid) {
                     event.preventDefault();
+                    this.submit = true;
                     return;
                 }
             }

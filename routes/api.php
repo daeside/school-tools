@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('supplie')->group(function () {
+/*Route::prefix('supplie')->group(function () {
     Route::get('/', [SupplieController::class, 'getAll']);
     Route::get('/{id}', [SupplieController::class, 'get']);
     Route::post('/', [SupplieController::class, 'create']);
@@ -34,4 +34,4 @@ Route::prefix('user')->group(function () {
     Route::post('/', [UserController::class, 'create']);
     Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'delete']);
-});
+});*/

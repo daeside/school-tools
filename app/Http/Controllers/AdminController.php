@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $validated = $request->validate(Rules::LOGIN_RULES);
         if (Auth::attempt($request->only('user', 'password'))) {
-            return redirect()->intended('admin/supplies');
+            return redirect()->route('admin.index');
         }
         return back()->withErrors([
             'user' => 'Invalid user or password',
