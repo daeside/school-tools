@@ -8,15 +8,25 @@ use App\Models\Supplie;
 use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\DataTables;
 
 class SupplieController extends Controller
 {
+    public function getAllDataTables()
+    {
+        try {
+            $query = Supplie::with('images')->orderBy('created_at', 'desc');
+            return DataTables::of($query)->make(true);
+        } catch (Exception $ex) {
+            return $this->handleException(null, $ex);
+        }
+    }
+
     public function getAll(Request $request)
     {
         try {
             $size = Validator::getQuerySize($request->query('size'));
-            $supplies = Supplie::orderBy('created_at', 'desc')->paginate($size);
-            $supplies->load('images');
+            $supplies = Supplie::with('images')->orderBy('created_at', 'desc')->paginate($size);
             return response()->json($supplies, Response::HTTP_OK);
         } catch (Exception $ex) {
             return $this->handleException(null, $ex);
@@ -26,8 +36,7 @@ class SupplieController extends Controller
     public function get($id)
     {
         try {
-            $supplie = Supplie::findOrFail($id);
-            $supplie->load('images');
+            $supplie = Supplie::with('images')->where('id', $id)->firstOrFail();
             return response()->json($supplie, Response::HTTP_OK);
         } catch (Exception $ex) {
             return $this->handleException(null, $ex);
@@ -50,7 +59,8 @@ class SupplieController extends Controller
     {
         try {
             $validated = $request->validate(Rules::SUPPLIE_RULES);
-            $supplie = $this->buildSupplie(Supplie::findOrFail($id), $request);
+            $query = Supplie::with('images')->where('id', $id)->firstOrFail();
+            $supplie = $this->buildSupplie($query, $request);
             $supplie->images()->delete();
             $this->buildAndLoadImages($supplie, $request);
             return response()->json($supplie, Response::HTTP_OK);
@@ -62,7 +72,7 @@ class SupplieController extends Controller
     public function delete($id)
     {
         try {
-            $supplie = Supplie::findOrFail($id);
+            $supplie = Supplie::with('images')->where('id', $id)->firstOrFail();
             foreach ($supplie->images as $image) {
                 $image->delete();
             }
