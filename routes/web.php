@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('supplie')->group(function () {
-        Route::get('/', [SupplieController::class, 'getAll']);
+        Route::get('/', [SupplieController::class, 'getAll'])->name('admin.supplies');
         Route::get('/{id}', [SupplieController::class, 'get']);
         Route::post('/', [SupplieController::class, 'create']);
         Route::put('/{id}', [SupplieController::class, 'update']);
