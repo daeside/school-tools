@@ -41,22 +41,30 @@
                         url: "{{ route('supplies.datatables') }}",
                         type: 'GET'
                     },
-                    columns: [
-                        { data: 'id' },
-                        { data: 'name' },
-                        { data: 'grade' },
-                        { data: 'price' },
-                        { data: 'created_at' },
-                        { data: 'updated_at' },
+                    columns: [{
+                            data: 'id'
+                        },
                         {
-                            data: null, // No vinculamos esta columna a un campo específico
+                            data: 'name'
+                        },
+                        {
+                            data: 'grade'
+                        },
+                        {
+                            data: 'price'
+                        },
+                        {
+                            data: 'created_at'
+                        },
+                        {
+                            data: 'updated_at'
+                        },
+                        {
+                            data: null,
                             render: function(data, type, row) {
-                            return `
-                                <button class="edit-btn" data-id="${row.id}">Edit</button>
-                                <button class="delete-btn" data-id="${row.id}">Delete</button>
-                            `;
+                                return createActions(row.id);
+                            }
                         }
-            }
                     ]
                 });
             }
