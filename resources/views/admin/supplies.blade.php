@@ -19,7 +19,8 @@
                     <th>Price</th>
                     <th>Created</th>
                     <th>Updated</th>
-                    <th>Actions</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +63,18 @@
                         {
                             data: null,
                             render: function(data, type, row) {
-                                return createActions(row.id);
+                                return createIcon('edit', row.id);
+                            }
+                        },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                let element = createIcon('delete', row.id);
+                                element.addEventListener('click', function(event){
+                                    event.preventDefault();
+                                    alert(row.id);
+                                });
+                                return element;
                             }
                         }
                     ]
