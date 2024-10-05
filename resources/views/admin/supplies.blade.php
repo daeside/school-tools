@@ -63,18 +63,21 @@
                         {
                             data: null,
                             render: function(data, type, row) {
-                                return createIcon('edit', row.id);
+                                let element = createIcon('edit');
+                                let url = "{{ route('admin.supplie', ['id' => 0]) }}";
+                                element.setAttribute('href', url.replace('0', row.id));
+                                element.setAttribute('target', '_blank');
+                                return element;
                             }
                         },
                         {
                             data: null,
                             render: function(data, type, row) {
-                                let element = createIcon('delete', row.id);
+                                let element = createIcon('delete');
                                 element.addEventListener('click', function(event) {
                                     event.preventDefault();
                                     let url = "{{ route('supplies.delete', ['id' => 0]) }}";
-                                    url = url.replace('0', row.id);
-                                    deleteElement(url, row.name, event);
+                                    deleteElement(url.replace('0', row.id), row.name);
                                 });
                                 return element;
                             }

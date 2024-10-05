@@ -34,9 +34,18 @@ class AdminController extends Controller
         return redirect()->route('custom.login');
     }
 
-    public function supplies(Request $request)
+    public function supplies()
     {
         $pageName = env('PAGE_NAME');
         return view('admin/supplies', compact('pageName'));
+    }
+
+    public function supplie($id)
+    {
+        $data = [
+            'pageName' => env('PAGE_NAME'),
+            'id' => $id
+        ];
+        return view('admin/supplie', $data);
     }
 }

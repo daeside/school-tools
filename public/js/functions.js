@@ -1,9 +1,9 @@
-function createIcon(type, url) {
+function createIcon(type) {
   const icon = document.createElement('i');
   icon.classList.add('material-icons');
   icon.innerText = type;
   const urlElement = document.createElement('a');
-  urlElement.setAttribute('href', url);
+  urlElement.setAttribute('href', '#');
   urlElement.appendChild(icon);
   return urlElement;
 }
@@ -21,7 +21,6 @@ async function deleteElement(url, name) {
       return;
     }
     alert('Error al borrar elemento');
-    console.log(response);
   } catch (error) {
     console.log('Ha ocurrido un error: ', error);
   }

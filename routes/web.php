@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/supplies', [AdminController::class, 'supplies'])->name('admin.index');
+        Route::get('/supplie/{id}', [AdminController::class, 'supplie'])->name('admin.supplie');
         Route::get('/dologout', [AdminController::class, 'doLogout']);
     });
     Route::get('/', [AdminController::class, 'login'])->name('custom.login');
