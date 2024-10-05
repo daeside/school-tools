@@ -70,9 +70,11 @@
                             data: null,
                             render: function(data, type, row) {
                                 let element = createIcon('delete', row.id);
-                                element.addEventListener('click', function(event){
+                                element.addEventListener('click', function(event) {
                                     event.preventDefault();
-                                    alert(row.id);
+                                    let url = "{{ route('supplies.delete', ['id' => 0]) }}";
+                                    url = url.replace('0', row.id);
+                                    deleteElement(url, row.name, event);
                                 });
                                 return element;
                             }

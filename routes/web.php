@@ -28,11 +28,11 @@ Route::prefix('admin')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::prefix('supplie')->group(function () {
         Route::get('/datatables', [SupplieController::class, 'getAllDataTables'])->name('supplies.datatables');
-        Route::get('/', [SupplieController::class, 'getAll']);
-        Route::get('/{id}', [SupplieController::class, 'get']);
-        Route::post('/', [SupplieController::class, 'create']);
-        Route::put('/{id}', [SupplieController::class, 'update']);
-        Route::delete('/{id}', [SupplieController::class, 'delete']);
+        Route::get('/', [SupplieController::class, 'getAll'])->name('supplies.getAll');;
+        Route::get('/{id}', [SupplieController::class, 'get'])->name('supplies.get');;
+        Route::post('/', [SupplieController::class, 'create'])->name('supplies.create');;
+        Route::put('/{id}', [SupplieController::class, 'update'])->name('supplies.update');;
+        Route::delete('/{id}', [SupplieController::class, 'delete'])->name('supplies.delete');
     });
 
     Route::prefix('user')->group(function () {

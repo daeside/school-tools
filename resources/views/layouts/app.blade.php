@@ -18,7 +18,7 @@
     <script src="{{ asset('js/dataTables.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script src="{{ asset('js/init.js') }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
 </head>
 <script>
     const {
