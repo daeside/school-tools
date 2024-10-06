@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::get('/supplies', [AdminController::class, 'supplies'])->name('admin.index');
+        Route::get('/buys', [AdminController::class, 'buys'])->name('admin.buys');
+        Route::get('/supplies', [AdminController::class, 'supplies'])->name('admin.supplies');
         Route::get('/supplie/{id}', [AdminController::class, 'supplie'])->name('admin.supplie');
         Route::get('/dologout', [AdminController::class, 'doLogout']);
     });
@@ -26,7 +27,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/dologin', [AdminController::class, 'doLogin']);
 });
 
-Route::middleware('auth')->group(function () {
+/*Route::middleware('auth')->group(function () {
     Route::prefix('supplie')->group(function () {
         Route::get('/datatables', [SupplieController::class, 'getAllDataTables'])->name('supplies.datatables');
         Route::get('/', [SupplieController::class, 'getAll'])->name('supplies.getAll');;
@@ -43,4 +44,4 @@ Route::middleware('auth')->group(function () {
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'delete']);
     });
-});
+});*/
