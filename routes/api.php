@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\SupplieController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::prefix('supplie')->group(function () {
+        Route::get('/', [SupplieController::class, 'getAll']);
+        Route::get('/{id}', [SupplieController::class, 'get']);
+        /*Route::post('/', [SupplieController::class, 'create']);
+        Route::put('/{id}', [SupplieController::class, 'update']);
+        Route::delete('/{id}', [SupplieController::class, 'delete']);*/
+    });
 });
+
+Route::post('/auth', [AuthController::class, 'auth']);
 
 /*Route::prefix('supplie')->group(function () {
     Route::get('/', [SupplieController::class, 'getAll']);

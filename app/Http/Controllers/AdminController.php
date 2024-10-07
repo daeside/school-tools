@@ -22,7 +22,7 @@ class AdminController extends Controller
             return redirect()->route('admin.buys');
         }
         return back()->withErrors([
-            'user' => 'Invalid user or password',
+            'error' => 'Invalid user or password',
         ]);
     }
 
