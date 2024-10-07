@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function doLogout()
     {
         Auth::logout();
-        return redirect()->route('custom.login');
+        return redirect()->route('login');
     }
 
     public function buys()

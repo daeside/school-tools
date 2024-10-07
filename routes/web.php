@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/supplie/{id}', [AdminController::class, 'supplie'])->name('admin.supplie');
         Route::get('/dologout', [AdminController::class, 'doLogout']);
     });
-    Route::get('/', [AdminController::class, 'login'])->name('custom.login');
+    Route::get('/', [AdminController::class, 'login'])->name('login');
     Route::post('/dologin', [AdminController::class, 'doLogin']);
 });
 
