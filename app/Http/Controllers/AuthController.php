@@ -22,7 +22,7 @@ class AuthController extends Controller
             }
             return response()->json([
                 'token' => $token,
-                'expires_in' => config('jwt.ttl') * 60
+                'expiresInSeconds' => config('jwt.ttl') * 60
             ]);
         } catch (Exception $ex) {
             return $this->handleException($request, $ex);
