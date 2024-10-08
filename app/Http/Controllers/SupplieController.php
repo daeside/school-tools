@@ -12,10 +12,10 @@ use Yajra\DataTables\DataTables;
 
 class SupplieController extends Controller
 {
-    public function getAllDataTables()
+    public function getAllForDataTables()
     {
         try {
-            $query = Supplie::with('images')->orderBy('created_at', 'desc');
+            $query = Supplie::orderBy('created_at', 'desc');
             return DataTables::of($query)->make(true);
         } catch (Exception $ex) {
             return $this->handleException(null, $ex);

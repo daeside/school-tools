@@ -39,8 +39,11 @@
                     processing: true,
                     serverSide: true,
                     ajax: {
-                        url: "{{ route('supplies.datatables') }}",
-                        type: 'GET'
+                        url: "{{ url('/api/supplie/datatables') }}",
+                        type: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + "{{ session('token') }}"
+                        }
                     },
                     columns: [{
                             data: 'id'
@@ -64,8 +67,8 @@
                             data: null,
                             render: function(data, type, row) {
                                 let element = createIcon('edit');
-                                let url = "{{ route('admin.supplie', ['id' => 0]) }}";
-                                element.setAttribute('href', url.replace('0', row.id));
+                                let url = "{{ url('admin/supplie') }}/" + row.id;
+                                element.setAttribute('href', url);
                                 element.setAttribute('target', '_blank');
                                 return element;
                             }
@@ -76,8 +79,8 @@
                                 let element = createIcon('delete');
                                 element.addEventListener('click', function(event) {
                                     event.preventDefault();
-                                    let url = "{{ route('supplies.delete', ['id' => 0]) }}";
-                                    deleteElement(url.replace('0', row.id), row.name);
+                                    let url = "{{ url('api/supplie') }}/" + row.id;
+                                    deleteElement(url, row.name, "{{ session('token') }}");
                                 });
                                 return element;
                             }

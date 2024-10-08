@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth.api')->group(function () {
     Route::prefix('supplie')->group(function () {
+        Route::get('/datatables', [SupplieController::class, 'getAllForDataTables']);
         Route::get('/', [SupplieController::class, 'getAll']);
         Route::get('/{id}', [SupplieController::class, 'get']);
         Route::post('/', [SupplieController::class, 'create']);

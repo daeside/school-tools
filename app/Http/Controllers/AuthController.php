@@ -7,6 +7,7 @@ use App\Commons\Rules;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -22,10 +23,16 @@ class AuthController extends Controller
             }
             return response()->json([
                 'token' => $token,
-                'expiresInSeconds' => config('jwt.ttl') * 60
+                'expiresIn' => $this->getExpiresIn()
             ]);
         } catch (Exception $ex) {
             return $this->handleException($request, $ex);
         }
+    }
+
+    private function getExpiresIn(): string
+    {
+        $expiration = JWTAuth::factory()->getTTL() * 60;
+        return Carbon::now()->addSeconds($expiration)->setTimezone('UTC')->toIso8601String();
     }
 }

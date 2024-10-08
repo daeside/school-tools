@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\SupplieController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,22 +24,3 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'login'])->name('login');
     Route::post('/dologin', [AdminController::class, 'doLogin']);
 });
-
-/*Route::middleware('auth')->group(function () {
-    Route::prefix('supplie')->group(function () {
-        Route::get('/datatables', [SupplieController::class, 'getAllDataTables'])->name('supplies.datatables');
-        Route::get('/', [SupplieController::class, 'getAll'])->name('supplies.getAll');;
-        Route::get('/{id}', [SupplieController::class, 'get'])->name('supplies.get');;
-        Route::post('/', [SupplieController::class, 'create'])->name('supplies.create');;
-        Route::put('/{id}', [SupplieController::class, 'update'])->name('supplies.update');;
-        Route::delete('/{id}', [SupplieController::class, 'delete'])->name('supplies.delete');
-    });
-
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'getAll']);
-        Route::get('/{id}', [UserController::class, 'get']);
-        Route::post('/', [UserController::class, 'create']);
-        Route::put('/{id}', [UserController::class, 'update']);
-        Route::delete('/{id}', [UserController::class, 'delete']);
-    });
-});*/
