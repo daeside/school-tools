@@ -8,6 +8,19 @@ function createIcon(type) {
   return urlElement;
 }
 
+async function getElement(url, token) {
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.log('Ha ocurrido un error: ', error);
+  }
+}
+
 async function deleteElement(url, name, token) {
   let deleteElement = confirm('¿Desea borrar ' + name + '?');
   if (!deleteElement) {

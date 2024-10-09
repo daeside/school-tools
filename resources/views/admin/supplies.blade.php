@@ -2,12 +2,15 @@
 @section('content')
 @include('partials.navbar')
 <main class="content-page" id="app">
-    <section class="py-5 text-center container">
+    <section class="py-3 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Supplies</h1>
             </div>
         </div>
+    </section>
+    <section class="py-3 text-start container">
+        <a href="{{ url('admin/supplie') }}/" target="_blank"><i class="material-icons fs-3">add_circle</i></a>
     </section>
     <div class="container">
         <table id="supplies" class="table table-striped" style="width:100%">

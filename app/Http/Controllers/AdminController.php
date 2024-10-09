@@ -57,7 +57,7 @@ class AdminController extends Controller
         return view('admin/supplies');
     }
 
-    public function supplie($id)
+    public function supplie($id = null)
     {
         return view('admin/supplie', ['id' => $id]);
     }

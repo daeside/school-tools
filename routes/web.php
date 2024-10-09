@@ -18,7 +18,7 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/buys', [AdminController::class, 'buys'])->name('admin.buys');
         Route::get('/supplies', [AdminController::class, 'supplies'])->name('admin.supplies');
-        Route::get('/supplie/{id}', [AdminController::class, 'supplie'])->name('admin.supplie');
+        Route::get('/supplie/{id?}', [AdminController::class, 'supplie'])->name('admin.supplie');
         Route::get('/dologout', [AdminController::class, 'doLogout']);
     });
     Route::get('/', [AdminController::class, 'login'])->name('login');
