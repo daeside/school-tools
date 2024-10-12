@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/dataTables.css') }}" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('css/quill.snow.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
@@ -18,6 +19,7 @@
     <script src="{{ asset('js/dataTables.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/quill.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
 </head>
 <script>
@@ -31,7 +33,10 @@
     const {
         required,
         minLength,
-        maxLength
+        maxLength,
+        numeric,
+        minValue,
+        maxValue
     } = VuelidateValidators;
 </script>
 

@@ -8,14 +8,14 @@
         <div class="form-floating">
             <input type="text" class="form-control" id="user" name="user" placeholder="User" v-model="user" @blur="v$.user.$touch()">
             <label for="user">User</label>
-            <span v-if="submit && v$.user.required.$invalid">User required</span>
-            <span v-if="v$.user.maxLength.$invalid">User max length is 30</span>
+            <span class="label-error" v-if="submit && v$.user.required.$invalid">User required</span>
+            <span class="label-error" v-if="v$.user.maxLength.$invalid">User max length is 30</span>
         </div>
         <div class="form-floating">
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" v-model="password" @blur="v$.password.$touch()">
             <label for="password">Password</label>
-            <span v-if="submit && v$.password.required.$invalid">Password required</span>
-            <span v-if="v$.password.maxLength.$invalid">Password max length is 50</span>
+            <span class="label-error" v-if="submit && v$.password.required.$invalid">Password required</span>
+            <span class="label-error" v-if="v$.password.maxLength.$invalid">Password max length is 50</span>
         </div>
         <div class="checkbox mb-3">
         </div>
@@ -25,7 +25,7 @@
     <div class="mt-3">
         <ul style="list-style-type: none;">
             @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+            <li class="label-error">{{ $error }}</li>
             @endforeach
         </ul>
     </div>
