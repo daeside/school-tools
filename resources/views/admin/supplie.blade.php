@@ -41,13 +41,19 @@
                                 <input type="number" id="price" class="form-control" required v-model="price" @blur="v$.price.$touch()">
                                 <span class="label-error" v-if="submit && v$.price.required.$invalid">Price required</span>
                             </div>
+                            <div class="col-md-6">
+                                <label for="images" class="form-label">Images</label>
+                                <input class="form-control" type="file" id="images" multiple>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="file" class="form-label">File</label>
+                                <input class="form-control" type="file" id="file">
+                            </div>
                             <div class="col-md-12">
                                 <label for="description" class="form-label">Description</label>
                                 <div id="editor"></div>
                                 <span class="label-error" v-if="submit && v$.description.required.$invalid">Description required</span>
                             </div>
-                        </div>
-                        <div>
                         </div>
                         <button style="max-width: 300px; margin-top: 5em;" class="w-100 btn btn-primary btn-lg" @click="onSubmit">Save</button>
                     </form>
