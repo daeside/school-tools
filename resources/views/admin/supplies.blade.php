@@ -10,7 +10,7 @@
         </div>
     </section>
     <section class="py-3 text-start container">
-        <a href="{{ url('admin/supplie') }}/" target="_blank"><i class="material-icons fs-3">add_circle</i></a>
+        <a href="{{ url('admin/supplie') }}/"><i class="material-icons fs-3">add_circle</i></a>
     </section>
     <div class="container">
         <table id="supplies" class="table table-striped" style="width:100%">
@@ -72,7 +72,6 @@
                                 let element = createIcon('edit');
                                 let url = "{{ url('admin/supplie') }}/" + row.id;
                                 element.setAttribute('href', url);
-                                element.setAttribute('target', '_blank');
                                 return element;
                             }
                         },
